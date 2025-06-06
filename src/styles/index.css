@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+@import "tailwindcss";
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #f9fafb; 
+  color: #111827;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+@theme {
+  --color-primary: #141313;
+  --color-background: #f9fafb;
+  --color-green: #6EF195;
+  --color-blue: #00E3FD;
+  
+  --font-default: 'IBM Plex Sans', sans-serif;
+  
+  --font-logo: 'IBM Plex Serif', serif;
+  --text-logo: 30px;
+  --text-logo--line-height: 40px;
+  --text-logo--letter-spacing: -0.02em;
+  --text-logo--font-weight: 600;
+
+  --text-nav: 20px;  
+  --text-nav--line-height: 30px;   
+  --text-nav--letter-spacing: 0;   
+  --text-nav--font-weight: 500; 
+}
+
+@keyframes gradient-slide {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: -33% 50%;
+  }
+}
+
+@layer utilities {
+  .animate-gradient-slide {
+    animation: gradient-slide 3s linear infinite;
+  }
+}
