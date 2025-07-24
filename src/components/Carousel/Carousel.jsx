@@ -21,14 +21,25 @@ export default function Carousel({ items, className }) {
         return () => clearInterval(interval); // Limpa o intervalo ao desmontar o componente
     }, [nextSlide]);
     return (
-        <div className={`relative overflow-hidden  w-full bg-gray-200 ${className}`}>
+        <div className={`relative overflow-hidden w-full ${className}`}>
             <div
                 className="h-full flex transition-transform duration-500 ease-in-out"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
                 {items.map((item, index) => (
-                    <div key={index} className="w-full flex-shrink-0">
-                        {item}
+                    <div key={index} className="w-full h-full flex-shrink-0 flex items-center justify-center bg-primary">
+                        {typeof item === 'string' ? (
+                            <div className="w-full h-full flex items-center justify-center">
+                                {/* Imagem principal */}
+                                <img
+                                    src={item}
+                                    alt="Foto do animal"
+                                    className="w-full h-full object-contain rounded-lg shadow-lg"
+                                />
+                            </div>
+                        ) : (
+                            item
+                        )}
                     </div>
                 ))}
             </div>
@@ -76,11 +87,10 @@ export default function Carousel({ items, className }) {
                 {items.map((_, index) => (
                     <button
                         key={index}
-                        className={`w-4 h-1 rounded-full transition-all duration-300 ease-in-out ${
-                            index === currentIndex
-                                ? "bg-white w-8"
-                                : "bg-white/50"
-                        }`}
+                        className={`w-4 h-1 rounded-full transition-all duration-300 ease-in-out ${index === currentIndex
+                            ? "bg-white w-8"
+                            : "bg-white/50"
+                            }`}
                         onClick={() => setCurrentIndex(index)}
                     />
                 ))}

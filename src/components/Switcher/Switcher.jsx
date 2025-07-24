@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
-export default function Switcher({options, className}) {
-    const [isChecked, setIsChecked] = useState(false);
+export default function Switcher({ options, value, onChange, className }) {
+    // Determina se está selecionado a segunda opção
+    const isChecked = value === options[1];
 
-    const handleCheckboxChange = () => {
-        setIsChecked(!isChecked);
+    const handleToggle = () => {
+        // Alterna entre as opções
+        const newValue = isChecked ? options[0] : options[1];
+        onChange(newValue);
     };
 
     return (
@@ -15,7 +18,7 @@ export default function Switcher({options, className}) {
                         type="checkbox"
                         className="sr-only"
                         checked={isChecked}
-                        onChange={handleCheckboxChange}
+                        onChange={handleToggle}
                     />
                     {/* Fundo deslizante*/}
                     <span
@@ -24,7 +27,7 @@ export default function Switcher({options, className}) {
                         }`}
                     ></span>
 
-                    {/* Opção Sobre */}
+                    {/* Opção Imagens */}
                     <span
                         className={`relative z-10 flex items-center justify-center  py-2 px-6 text-sm w-32 ${
                             !isChecked ? "text-font font-medium" : "text-white"
@@ -33,7 +36,7 @@ export default function Switcher({options, className}) {
                         {options[0]}
                     </span>
 
-                    {/* Opção Ocorrências */}
+                    {/* Opção Mapa */}
                     <span
                         className={`relative z-10 flex items-center justify-center  py-2 px-6 text-sm w-32 ${
                             isChecked ? "text-font font-medium" : "text-white"
