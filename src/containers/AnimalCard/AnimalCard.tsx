@@ -1,9 +1,11 @@
+
+
 import React from "react";
-import Carousel from "../../components/Carousel/Carousel.jsx";
-import Switcher from "../../components/Switcher/Switcher.jsx";
-import Button from "../../components/Button/Button.jsx";
-import DetailsList from "../../components/DetailsList/DetailsList.jsx";
-import AboutSection from "../../components/AboutSection/AboutSection.jsx";
+import Carousel from "../../components/Carousel/Carousel.js";
+import Switcher from "../../components/Switcher/Switcher.js";
+import Button from "../../components/Button/Button.js";
+import DetailsList from "../../components/DetailsList/DetailsList.js";
+import AboutSection from "../../components/AboutSection/AboutSection.js";
 import ShuffleIcon from "../../assets/icons/shuffle_icon.svg";
 
 function getRandomAnimal(){

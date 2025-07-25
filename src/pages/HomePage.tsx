@@ -1,7 +1,7 @@
-// src/pages/HomePage.jsx
+// src/pages/HomePage.tsx
 import React from "react";
-import Button from "../components/Button/Button.jsx";
-import CardFloat from "../components/CardFloat/CardFloat.jsx";
+import Button from "../components/Button/Button";
+import CardFloat from "../components/CardFloat/CardFloat";
 import ArrowIcon from "../assets/icons/north_east.svg";
 
 export default function HomePage() {
@@ -31,6 +31,7 @@ export default function HomePage() {
                     <Button
                         icon={ ArrowIcon }
                         className={"w-76"}
+                        onClick={() => {}}
                     >
                         Explore toda a diversidade
                     </Button>

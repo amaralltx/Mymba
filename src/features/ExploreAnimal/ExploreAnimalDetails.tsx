@@ -1,23 +1,23 @@
-import React from "react";
-import Button from "../../components/Button/Button.jsx";
-import DetailsList from "../../components/DetailsList/DetailsList.jsx";
-import AboutSection from "../../components/AboutSection/AboutSection.jsx";
+import { useState, useEffect } from "react";
+import Button from "../../components/Button/Button";
+import DetailsList, { DetailsData } from "../../components/DetailsList/DetailsList";
+import AboutSection from "../../components/AboutSection/AboutSection";
 import ShuffleIcon from "../../assets/icons/shuffle_icon.svg";
-import { getRandomAnimal } from "./animalService.jsx";
+import { useAnimalData } from "./AnimalContext";
 
 export default function ExploreAnimalDetails() {
-    const [loading, setLoading] = React.useState(true);
-    const [animalData, setAnimalData] = React.useState();
+    const { animalData, loading, error, handleFetchAnimal } = useAnimalData();
+    const isLoadingOrNoData = loading || !animalData;
 
-    const handleFetchAnimal = async () => {
-        setLoading(true);
-        const animal = await getRandomAnimal();
-        setAnimalData(animal);
-        setLoading(false);
-    }
+    const detailsData: DetailsData = {
+        diet: animalData?.diet || "",
+        weight: animalData?.weight || "",
+        size: animalData?.size || "",
+        conservation_status: animalData?.conservation_status || "",
+        type: "",
+    };
 
-    // Busca um animal aleatório inicial quando o componente é carregado
-    React.useEffect(() => {
+    useEffect(() => {
         const fetchAnimal = () => {
             handleFetchAnimal();
         };
@@ -31,27 +31,28 @@ export default function ExploreAnimalDetails() {
                 <h1
                     className="text-4xl max-w-fit bg-gradient-to-bl from-green to-blue
                                               text-transparent bg-clip-text 
-                                              inline-block font-bold"
+                                              inline-block font-bold
+                                              "
                 >
-                    {loading ? "Carregando..." : animalData.popular_name}
+                    {isLoadingOrNoData ? "Carregando..." : animalData.popular_name}
                 </h1>
 
                 {/* Nome científico */}
 
                 <h2 className="tracking-[7%] italic text-gray-700 font-medium">
-                    {loading ? "..." : animalData.scientific_name}
+                    {isLoadingOrNoData ? "..." : animalData.scientific_name}
                 </h2>
             </div>
             <div className="h-9/10 relative">
                 {/* Descrição do animal */}
-                <DetailsList data={loading ? "..." : [animalData.diet, animalData.weight, animalData.size, animalData.conservation_status]} />
+                {<DetailsList data={detailsData} />}
                 {/* Sobre o animal */}
-                <AboutSection data={loading ? "..." : animalData.description} />
+                {<AboutSection about={animalData?.description || ""} />}
                 {/* Botão para alterar animal */}
                 <Button
                     icon={ShuffleIcon}
                     className={
-                        "w-76 ml-auto mr-auto mt-4 absolute bottom-0 right-33/100"
+                        "w-76 ml-auto mr-auto absolute bottom-0 right-1/2 translate-x-1/2"
                     }
                     onClick={() => {
                         handleFetchAnimal();

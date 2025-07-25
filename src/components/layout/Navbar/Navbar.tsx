@@ -2,7 +2,7 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import githubIcon from "../../../assets/icons/github.svg";
-import Logo from "../../Logo/Logo.jsx";
+import Logo from "../../Logo/Logo.js";
 export default function Navbar() {
     const location = useLocation();
 
